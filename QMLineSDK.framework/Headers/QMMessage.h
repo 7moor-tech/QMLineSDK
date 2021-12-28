@@ -241,9 +241,24 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *isRobot;
 
 /**
+ 消息类型，系统消息-system、机器人消息-robot、人工消息-UUID、我自己发的消息-my
+ */
+@property (nonatomic, copy)NSString *userType;
+
+/**
+  消息是否展示以及副标题消息权限(目前用于语音转文本) 不展示@"0"  展示@"1"
+ */
+@property (nonatomic, copy)NSString *messageStatus;
+
+/**
  消息是否已读 已读@"1" 未读@"0"
  */
 @property (nonatomic, copy)NSString *isRead;
+
+/**
+ 语音消息已读未读
+ */
+@property (nonatomic, copy)NSString *voiceRead;
 
 /**
  机器人回复是否有帮助 不是机器人@"none" 有帮助@"useful" 无帮助@"useless"
@@ -311,6 +326,25 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *robotFlowType;
 
 /**
+ xbot机器人点选样式
+ */
+@property (nonatomic, copy)NSString *robotFlowsStyle;
+
+/*
+ xbot机器人单选多选
+ 0 --- 单选
+ 1 --- 多选
+ **/
+@property (nonatomic, copy)NSString *robotFlowSelect;
+
+/*
+ 多选是否已经发送
+ 0 --- 未发送
+ 1 --- 已发送
+ **/
+@property (nonatomic, copy)NSString *robotFlowSend;
+
+/**
  富文本消息
  */
 @property (nonatomic, strong)CustomRichText *richText;
@@ -366,18 +400,67 @@ typedef enum: NSInteger {
  **/
 @property (nonatomic, assign) QMMessageCardReadType cardType;
 
+/**
+ 视频状态 "0"已接通  "1"取消  "2"拒绝
+ */
+@property (nonatomic, copy)NSString *videoStatus;
 
-//@property (nonatomic, copy)NSString *customThird;
-//
-//@property (nonatomic, copy)NSString *audioText;
-//
-//@property (nonatomic, copy)NSString *from;
-//
-//@property (nonatomic, copy)NSString *tonotify;
-//
-//@property (nonatomic, copy)NSString *type;
-//
-//@property (nonatomic, copy)NSString *hideTime;
+
+/*
+ xbot机器人点赞文案
+ **/
+@property (nonatomic, copy)NSString *fingerUp;
+
+/*
+xbot机器人点赞文案
+**/
+@property (nonatomic, copy)NSString *fingerDown;
+
+/*
+ 满意度评价id
+ **/
+@property (nonatomic, copy)NSString *evaluateId;
+
+/*
+ 满意度评价是否已评价
+ 同一个满意度id下的 是否已评价
+ **/
+@property (nonatomic, copy)NSString *evaluateStatus;
+
+/*
+ 满意度服务时间
+ **/
+@property (nonatomic, copy)NSString *evaluateTimestamp;
+
+/*
+ 满意度超时时长
+ **/
+@property (nonatomic, copy)NSString *evaluateTimeout;
+
+/*
+ 常见问题分组
+ **/
+@property (nonatomic, copy)NSString *common_questions_group;
+
+/*
+ 记录常见问题在哪一组
+ **/
+@property (nonatomic, copy)NSString *common_selected_index;
+
+/*
+ 常见问题图片
+ **/
+@property (nonatomic, copy)NSString *common_questions_img;
+
+/*
+ xbot表单消息
+ **/
+@property (nonatomic, copy)NSString *xbotForm;
+
+/*
+ xbot表单消息 是否第一次出现
+ **/
+@property (nonatomic, copy)NSString *xbotFirst;
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
 

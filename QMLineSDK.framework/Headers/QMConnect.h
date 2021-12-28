@@ -16,14 +16,13 @@
 @class QMSessionOption;
 @class QMEvaluation;
 
+typedef enum : NSUInteger {
+    QMServiceLineAliy = 0,
+    QMServiceLineTencent,
+} QMServiceLine;
+
 
 @interface QMConnect : NSObject
-
-+ (void)registerSDKWithAppKey:(NSString *)accessId
-                     userName:(NSString *)userName
-                       userId:(NSString *)userId
-                     deviceId:(NSString *)deviceId;
-
 
 /**
  注册accessId、初始化SDK:
@@ -61,6 +60,11 @@
  */
 + (void)logout;
 
+/*
+切换线路服务，需要咨询对接是否需要使用 默认Aliy
+**/
++ (void)switchServiceRoute:(QMServiceLine)line;
+
 /**
  自建服务器设置网络地址:
  是不是自建服务器的用户不需要设置此项
@@ -74,15 +78,15 @@
                 httpPost:(NSString *)httpPost;
 
 /*
- 部分用户Cocoapods服务，需要咨询对接是否需要使用
- **/
-+ (void)setServerToCocoapods;
-
-/*
  推送的token
  每次启动应用都需要重新设置
  **/
 + (void)setServerToken:(NSData *)deviceToken;
+
+/*
+ 更改七牛服务地址
+ **/
++ (void)setFileServer:(NSString *)fileUrl withZone:(NSString *)zoneUrl;
 
 /**
  发起新会话:
@@ -93,8 +97,8 @@
  param failBlock:     接入会话失败回调，
  */
 + (void)sdkBeginNewChatSession:(NSString *)peerId
-                  successBlock:(void (^)(BOOL))success
-                     failBlock:(void (^)(void))failure;
+                  successBlock:(void (^)(BOOL, NSString *))success
+                     failBlock:(void (^)(NSString *))failure;
 
 /**
  发起新会话:
@@ -107,7 +111,7 @@
  */
 + (void)sdkBeginNewChatSession:(NSString *)peerId
                       delegate:(id<QMKServiceDelegate>)delegate
-                  successBlock:(void (^)(BOOL))success
+                  successBlock:(void (^)(BOOL, NSString *))success
                      failBlock:(void (^)(void))failure;
 
 
@@ -123,8 +127,8 @@
  */
 + (void)sdkBeginNewChatSession:(NSString *)peerId
                         params:(NSDictionary *)params
-                  successBlock:(void (^)(BOOL))success
-                     failBlock:(void (^)(void))failure;
+                  successBlock:(void (^)(BOOL, NSString *))success
+                     failBlock:(void (^)(NSString *))failure;
 
 /**
  发起新会话:
@@ -137,8 +141,8 @@
  */
 + (void)sdkBeginNewChatSession:(NSString *)peerId
                         option:(QMSessionOption *)option
-                  successBlock:(void (^)(BOOL))success
-                     failBlock:(void (^)(void))failure;
+                  successBlock:(void (^)(BOOL, NSString *))success
+                     failBlock:(void (^)(NSString *))failure;
 
 /**
  发起新会话:
@@ -160,9 +164,29 @@
                          currentNodeId:(NSString *)currentNodeId
                             entranceId:(NSString *)entranceId
                                 params:(NSDictionary *)params
-                          successBlock:(void (^)(BOOL))success
-                             failBlock:(void (^)(void))failure;
+                          successBlock:(void (^)(BOOL, NSString *))success
+                             failBlock:(void (^)(NSString *))failure;
 
+/**
+发起新会话:
+启用日程管理vip坐席失败之后用此接口
+
+调用此接口、可以拥有与客服对话的能力、携带参数
+
+param schedule:      日程id
+param processId:     流程id
+param currentNodeId: 入口节点中访客选择的流转节点ID
+param entranceId:    入口节点中的id
+param successBlock:  接入会话成功回调，回调参数为bool类型，判断后台是否开启问卷调查功能
+param failBlock:     接入会话失败回调，
+*/
+
++ (void)sdkBeginNewChatSessionSchedule:(NSString *)scheduleId
+                             processId:(NSString *)processId
+                         currentNodeId:(NSString *)currentNodeId
+                            entranceId:(NSString *)entranceId
+                          successBlock:(void (^)(BOOL, NSString *))success
+                             failBlock:(void (^)(NSString *))failure;
 /**
  获取渠道全局配置中 globalSet
  调用此接口获取后台的全局配置信息，注册成功会主动请求一次插入本地plist文件，用户也可以自行调用获取
@@ -194,7 +218,7 @@
  */
 + (void)sendMsgText:(NSString *)text
        successBlock:(void (^)(void))success
-          failBlock:(void (^)(void))failure;
+          failBlock:(void (^)(NSString *))failure;
 
 /**
  发送图片消息:
@@ -206,7 +230,7 @@
  */
 + (void)sendMsgPic:(UIImage *)image
       successBlock:(void (^)(void))success
-         failBlock:(void (^)(void))failure;
+         failBlock:(void (^)(NSString *))failure;
 
 /**
  发送图片消息:
@@ -218,7 +242,7 @@
  */
 + (void)sendMsgImage:(NSString *)filePath
         successBlock:(void (^)(void))success
-           failBlock:(void (^)(void))failure;
+           failBlock:(void (^)(NSString *))failure;
 
 /**
  发送语音消息:
@@ -232,7 +256,16 @@
 + (void)sendMsgAudio:(NSString *)audio
             duration:(NSString *)duartion
         successBlock:(void (^)(void))success
-           failBlock:(void (^)(void))failure;
+           failBlock:(void (^)(NSString *))failure;
+
+/**
+ 语音转文本接口:
+ 
+ param message:    消息model
+ */
++ (void)sendMsgAudioToText:(CustomMessage *)message
+              successBlock:(void (^)(void))success
+                 failBlock:(void (^)(void))failure;
 
 /**
  发送文件消息:
@@ -250,7 +283,7 @@
            fileSize:(NSString *)fileSize
      progressHander:(void (^)(float))progress
        successBlock:(void (^)(void))success
-          failBlock:(void (^)(void))failure;
+          failBlock:(void (^)(NSString *))failure;
 
 /**
  发送商品信息消息:
@@ -262,7 +295,7 @@
  */
 + (void)sendMsgCardInfo:(NSDictionary *)message
            successBlock:(void (^)(void))success
-              failBlock:(void (^)(void))failure;
+              failBlock:(void (^)(NSString *))failure;
 
 /**
  下载消息中的文件：
@@ -289,7 +322,7 @@
  */
 + (void)resendMessage:(CustomMessage *)message
          successBlock:(void (^)(void))success
-            failBlock:(void (^)(void))failure;
+            failBlock:(void (^)(NSString *))failure;
 
 /**
  封装消息模型:
@@ -401,6 +434,32 @@
 + (void)changeCardTypeMessageTime:(NSString *)time;
 
 /**
+ 语音转文本是否显示
+
+ param status:  是否显示 @”0“不显示   @”1“显示
+ param messageId:  消息id  (messageId传@”all“时是隐藏所有已经转的语音----用于退出聊天页面再次进入的时候)
+ */
++ (void)changeVoiceTextShowoOrNot:(NSString *)status message:(NSString *)messageId;
+
+/**
+查询语音转文字的状态
+0不展示  1展示  2正在翻译中…
+@param messageId 消息id
+*/
++ (NSString *)queryVoiceTextStatusWithmessageId:(NSString *)messageId;
+
+/**
+ 插入自定义类型消息 --- 目前只支持插入未定义的消息类型，已定义的消息类型不支持回显
+ 该方法只插入本地消息，只用于自定义消息回显，不会发送给后端和坐席
+ */
++ (void)insertOtherInfoData:(NSDictionary *)mateData type:(NSString *)type;
+
+/**
+ 插入留言内容，用于会话页面展示
+ */
++ (void)insertLeaveMsg:(NSString *)message;
+
+/**
  请求人工服务:
  调用此接口、请求人工服务(如后台开启智能机器人功能、默认为机器人服务器)
  
@@ -409,6 +468,18 @@
  */
 + (void)sdkConvertManual:(void (^)(void))success
                failBlock:(void (^)(void))failure;
+
+/**
+ 请求人工服务：带技能组id
+ 用于机器人问答自动调用转人工服务
+ 
+ param peerId:  技能组id
+ param successBlock:  成功回调
+ param failBlock:     失败回调
+ */
++ (void)sdkConvertManualWithPeerId:(NSString *)peerId
+                      successBlock:(void (^)(void))success
+                         failBlock:(void (^)(void))failure;
 
 /**
  其他坐席服务授权
@@ -516,6 +587,9 @@ param failureBlock :    失败回调
                           value:(NSString *)value
                      radioValue:(NSArray *)radioValue
                          remark:(NSString *)remark
+                            way:(NSString *)way
+                      operation:(NSString *)operation
+                      sessionId:(NSString *)sessionId
                    successBlock:(void (^)(void))success
                       failBlock:(void (^)(void))failure;
 
@@ -725,7 +799,7 @@ param failureBlock :    失败回调
 
 /**
  机器人的类型
- 此方法必须s是在启用机器人后使用
+ 此方法必须是在启用机器人后使用
  小七   7mbot
  小陌   7mbot_ai
  xbot  xbot
@@ -757,8 +831,8 @@ param failureBlock :    失败回调
  param successBlock:  成功回调
  param failBlock:     回调失败
  */
-+ (void)sdkChatTimerBreaking:(void (^)(NSDictionary *))success
-                   failBlock:(void (^)(void))failure;
+//+ (void)sdkChatTimerBreaking:(void (^)(NSDictionary *))success
+//                   failBlock:(void (^)(void))failure;
 
 /**
  排队数提示文案
@@ -779,7 +853,6 @@ param failureBlock :    失败回调
  应用杀死时事件处理
  **/
 + (void)applicationWillTerminateHandle;
-
 
 /**
 获取常见问题
@@ -803,4 +876,128 @@ param failureBlock :    失败回调
 + (void)sdkLogoutAction:(void(^)(BOOL, NSString *))completion;
 
 + (CustomMessage *)createAndInsertMessageToDBWithMessageType: (NSString *)type filePath: (NSString *)filePath content: (NSString *)content metaData: (NSDictionary *)metaData;
+
+/**
+ 定时断开会话消息提醒
+ */
++ (void)sdkSendBreakTipMessage;
+
+/**
+ 系统消息头像
+ */
++ (NSString *)sdkSystemMessageIcon;
+
+/**
+ 消费未读消息
+ */
++ (void)sdkDealImMsgWithMessageID:(NSArray *)messageID;
+
+/**
+ 自定义对方撤回消息的文案
+ 
+ 默认文案：对方撤回一条消息
+ 可用于国际化适配和自定义文案
+ */
++ (void)WithdrawMessageText:(NSString *)text;
+
+/**
+ 是否开启已读未读
+ */
++ (BOOL)sdkWhetherToOpenReadAndUnread;
+
+/**
+ 查询坐席的未消费的消息
+ */
++ (NSArray *) sdkGetAgentMessageWithIsRead;
+
+/**
+ 满意度评价消息  只写入本地数据库
+ 
+ param text:       标题&评价内容
+ param ID:         满意度id 即会话id
+ param status:   满意度状态  0--未评价  1--已评价  2--评价内容
+ */
+//+ (void)sdkSendEvaluateMessage:(NSString *)text
+//                        withID:(NSString *)ID
+//                    withStatus:(NSString *)status
+//                 withTimestamp:(NSString *)timestamp;
++ (void)sdkSendEvaluateMessage:(NSDictionary *)dic;
+
+/**
+ 通过evaluateId更改满意度评价状态
+ */
++ (void)sdkUpdateEvaluateStatusWithEvaluateId:(NSString *)evaluateId;
+
+/**
+ 定时关闭会话时间到期后调用该接口
+ */
++ (void)sdkClientChatClose:(NSString *)chatID;
+
+/*
+ 修改常见问题index
+ **/
++ (void)sdkChangeCommonProblemIndex:(NSString *)index withMessageID:(NSString *)messageId;
+
+/*
+ 修改robotFlowList
+ **/
++ (void)sdkUpdateRobotFlowList:(NSString *)flowList withMessageID:(NSString *)messageId;
+
+/*
+ 修改robotFlowSend
+ **/
++ (void)sdkUpdateRobotFlowSend:(NSString *)flowSend withMessageID:(NSString *)messageId;
+
+/*
+ 用于机器人表单消息上传附件
+ fileDic   附件消息体 必须包含fileName、fileSize、filePath
+ progress  上传进度
+ success   上传成功返回链接
+ failBlock 上传失败
+ **/
++ (void)sdkSendFile:(NSDictionary *)fileDic progress:(void (^)(float))progress success:(void (^)(NSString *))success failBlock:(void (^)(NSString *))failure;
+
+/*
+ 提交表单消息
+ **/
++ (void)sdkSubmitFormMessage:(NSDictionary *)dic;
+
+/*
+ 更改表单消息
+ 0 消息第一次插入数据库 用于弹出消息
+ 1 已存在 不需要弹出
+ 2 已提交 不能点击弹出
+ **/
++ (void)sdkUpdateFormStatus:(NSString *)status withMessageID:(NSString *)messageId;
+
+/*
+ 获取 SDK 版本号
+ **/
++ (NSString *)QMSDKVersion;
+
+#pragma mark - 视频接口
+/**
+ 是否开启视频权限 yes为开启
+ */
++ (BOOL)sdkVideoRights;
+
+/**
+ 接受视频
+ */
++ (void)sdkAcceptVideo:(void (^)(void))success failBlock:(void (^)(void))failure;
+
+/**
+ 拒绝视频
+ */
++ (void)sdkRefuseVideo:(void (^)(void))success failBlock:(void (^)(void))failure;
+
+/**
+ 取消视频
+ */
++ (void)sdkCannelVideo:(void (^)(void))success failBlock:(void (^)(void))failure;
+/**挂断*/
++ (void)sdkHangupVideo:(NSString *)originator successBlock:(void (^)(void))success failBlock:(void (^)(void))failure;
++ (void)sdkGetVideo:(NSString *)type Completion:(void (^)(id))completion failure:(void (^)(NSError *))failure;
+
+
 @end

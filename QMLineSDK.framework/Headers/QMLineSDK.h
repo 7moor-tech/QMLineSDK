@@ -109,3 +109,41 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  * xbot机器人开启联想输入
  */
 #define CUSTOMSRV_ASSOCIATSINPUT @"associatsinput"
+
+///**
+// * 人工状态下开启联想输入
+// */
+//#define CUSTOMSRV_HUMANASSOCIATSINPUT @"humanAssociatsinput"
+
+ /**
+ *   语音转文本
+ */
+#define CUSTOMSRV_VOICETEXT @"voiceText"
+
+/**
+ *  视频邀请通知
+ */
+#define CUSTOMSRV_VIDEO_INVITE @"customvideoinvite"
+
+/**
+ * 视频拒绝通知
+ */
+#define CUSTOMSRV_VIDEO_REFUSE @"customvideorefuse"
+
+/**
+ *  视频取消通知
+ */
+#define CUSTOMSRV_VIDEO_CANCEL @"customvideocancel"
+
+/**
+ *  视频中断通知
+ */
+#define CUSTOMSRV_VIDEO_INTERRUPT @"customvideointerrupt"
+/**
+ *  视频对方接听
+ */
+#define CUSTOMSRV_VIDEO_AcceptVideo @"CUSTOMSRV_VIDEO_AcceptVideo"
+/**
+ *  视频挂断
+ */
+#define CUSTOMSRV_VIDEO_HangupVideo @"CUSTOMSRV_VIDEO_HangupVideo"

@@ -20,7 +20,10 @@
 @property (nonatomic, copy) NSString * timeout;
 ///满意度评价超时是否开启
 @property (nonatomic, assign) BOOL CSRAging;
-
+///访客是否开启满意度权限
+@property (nonatomic, assign) BOOL CSRCustomerPush;
+///访客离开是否弹出满意度评价权限
+@property (nonatomic, assign) BOOL CSRCustomerLeavePush;
 
 @end
 

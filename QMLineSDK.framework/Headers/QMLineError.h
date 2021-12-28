@@ -31,4 +31,6 @@ typedef enum: NSInteger {
 
 + (instancetype)initWithError:(QMRegisterErrorCode)errorCode;
 
++ (instancetype)initWithError:(QMRegisterErrorCode)errorCode error:(NSString *)message;
+
 @end

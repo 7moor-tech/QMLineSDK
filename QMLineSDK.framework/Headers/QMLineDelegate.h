@@ -28,7 +28,4 @@
 @optional
 - (void)currentSessionWaitNumber:(int)number;
 
-@optional
-- (void)inviteEvaluate;
-
 @end
