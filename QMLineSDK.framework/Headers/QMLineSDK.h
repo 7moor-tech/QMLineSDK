@@ -23,7 +23,7 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
 #import "QMLineError.h"
 #import "QMLineDelegate.h"
 #import "QMSessionOption.h"
-
+#import "QMChatFileTextAttachment.h"
 
 /**
  *  注册accessId成功通知
@@ -79,6 +79,11 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  *  坐席信息通知
  */
 #define CUSTOMSRV_AGENT @"customagent"
+
+/**
+ *  socket 断线通知
+ */
+#define CUSTOMSRV_SOCKETFAIL @"socketDisconnect"
 
 /**
  *  专属坐席通知

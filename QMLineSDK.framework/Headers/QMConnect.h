@@ -60,6 +60,11 @@ typedef enum : NSUInteger {
  */
 + (void)logout;
 
+/**
+ 重连 socket
+ */
++ (void)reConnectSocket;
+
 /*
 切换线路服务，需要咨询对接是否需要使用 默认Aliy
 **/
@@ -814,27 +819,6 @@ param failureBlock :    失败回调
 + (BOOL)manualButtonStatus;
 
 /**
- 与服务器连接状态
-
- @param connected 已连接
- @param connecting 连接中/重连中
- @param disconnect 断开连接
- */
-+ (void)statusWithConneted:(void (^)(void))connected
-                connecting:(void (^)(void))connecting
-                       dis:(void (^)(void))disconnect;
-
-/**
- 会话定时断开
- 调用此接口、可以再客户在一定时间没有新消息的时候断开会话
- 
- param successBlock:  成功回调
- param failBlock:     回调失败
- */
-//+ (void)sdkChatTimerBreaking:(void (^)(NSDictionary *))success
-//                   failBlock:(void (^)(void))failure;
-
-/**
  排队数提示文案
  */
 + (NSArray *)sdkQueueMessage;
@@ -975,6 +959,16 @@ param failureBlock :    失败回调
  **/
 + (NSString *)QMSDKVersion;
 
+/*
+ 用户输入监听
+ **/
++ (void)sdkInputMonitor:(NSString *)content successBlock:(void (^)(void))success failBlock:(void (^)(void))failure;
+
+/**
+ 是否进行输入监听
+ */
++ (BOOL)sdkGetIsInputMonitor;
+
 #pragma mark - 视频接口
 /**
  是否开启视频权限 yes为开启
@@ -999,5 +993,13 @@ param failureBlock :    失败回调
 + (void)sdkHangupVideo:(NSString *)originator successBlock:(void (^)(void))success failBlock:(void (^)(void))failure;
 + (void)sdkGetVideo:(NSString *)type Completion:(void (^)(id))completion failure:(void (^)(NSError *))failure;
 
+/**
+ 消息文件下载
+ */
++ (void)downloadFileWithUrl:(NSString *)url
+                   successBlock:(void (^)(void))success
+                  failBlock:(void (^)(NSString *))failure;
 
++ (NSString *)getBaseUrl;
++ (NSString *)getAccessid;
 @end

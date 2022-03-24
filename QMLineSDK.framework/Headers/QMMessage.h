@@ -131,6 +131,14 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *message;
 
 /**
+ 富文本
+ */
+@property (nonatomic, strong) NSAttributedString *contentAttr;
+
+// 富文本图片是否替换成功 0/不需要替换 1/替换 2/替换成功
+@property (nonatomic, assign) int attrAttachmentReplaced;
+
+/**
  消息类型
  */
 @property (nonatomic, copy)NSString *messageType;
@@ -461,6 +469,13 @@ xbot机器人点赞文案
  xbot表单消息 是否第一次出现
  **/
 @property (nonatomic, copy)NSString *xbotFirst;
+
+/*
+ video image 地址
+ **/
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *type;
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
 
