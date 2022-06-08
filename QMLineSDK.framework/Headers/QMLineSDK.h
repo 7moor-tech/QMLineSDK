@@ -152,3 +152,7 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  *  视频挂断
  */
 #define CUSTOMSRV_VIDEO_HangupVideo @"CUSTOMSRV_VIDEO_HangupVideo"
+/**
+ *  断开会话
+ */
+#define CUSTOMSRV_CHAT_BREAKTIMER @"CUSTOMSRV_CHAT_BREAKTIMER"

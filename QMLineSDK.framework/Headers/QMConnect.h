@@ -19,6 +19,7 @@
 typedef enum : NSUInteger {
     QMServiceLineAliy = 0,
     QMServiceLineTencent,
+    QMServiceLineHuawei,
 } QMServiceLine;
 
 
@@ -766,12 +767,18 @@ param failureBlock :    失败回调
 + (NSArray *)leaveMessageContactInformation;
 
 /**
- 是否启用用户无响应会话自动关闭功能
- 
- 全局配置：
- 用户长时间未给坐席发送消息，自动关闭当前会话 并退出聊天界面，需要后台正确配置 提示和断开时间
+ 创建访客无响应定时器
+
+ 用户给坐席发送消息，创建定时器
  */
-+ (BOOL)allowedBreakSession;
++ (void)createNoresponseTimer;
+
+/**
+ 移除访客无响应定时器
+ 
+ 用户长时间未给坐席发送消息，自动移除当前定时器
+ */
++ (void)removeNoresponseTimer;
 
 /**
  自动关闭会话提示语
@@ -999,6 +1006,15 @@ param failureBlock :    失败回调
 + (void)downloadFileWithUrl:(NSString *)url
                    successBlock:(void (^)(void))success
                   failBlock:(void (^)(NSString *))failure;
+
+/**
+ 排队保持时间
+ */
++ (NSString *)queueKeepTime;
+/**
+ 排队保持状态
+ */
++ (BOOL)queueKeepStatus;
 
 + (NSString *)getBaseUrl;
 + (NSString *)getAccessid;

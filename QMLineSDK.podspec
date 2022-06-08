@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "QMLineSDK"
-  spec.version      = "4.1.2"
+  spec.version      = "4.2.0"
   spec.summary      = "QMLineSDK is sdk"
 
   spec.homepage     = "https://github.com/7moor-tech/QMLineSDK"
@@ -22,8 +22,7 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = {'VALID_ARCHS'=>'armv7 x86_64 arm64'}
 
   spec.requires_arc = true
-  spec.dependency 'Qiniu', '~> 8.2.1'
-  spec.dependency 'FMDB', '~> 2.7.5'
+  spec.dependency 'QMBaseLib'
   spec.dependency 'SocketRocket', '~> 0.6.0'
 
 end
