@@ -470,6 +470,11 @@ xbot机器人点赞文案
  **/
 @property (nonatomic, copy)NSString *xbotFirst;
 
+/**
+ 文件二进制数据
+ */
+@property (nonatomic, strong) NSData *fileData;
+
 /*
  video image 地址
  **/

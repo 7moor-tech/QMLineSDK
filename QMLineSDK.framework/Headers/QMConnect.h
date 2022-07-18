@@ -1015,6 +1015,10 @@ param failureBlock :    失败回调
  排队保持状态
  */
 + (BOOL)queueKeepStatus;
+/**
+ 上传类型
+ */
++ (BOOL)allowedTXUpload;
 
 + (NSString *)getBaseUrl;
 + (NSString *)getAccessid;
