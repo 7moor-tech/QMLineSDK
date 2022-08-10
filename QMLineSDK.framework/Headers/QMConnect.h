@@ -472,7 +472,8 @@ param failBlock:     接入会话失败回调，
  param successBlock:  成功回调
  param failBlock:     失败回调
  */
-+ (void)sdkConvertManual:(void (^)(void))success
++ (void)sdkConvertManual:(NSString *)converType
+            successBlock:(void (^)(void))success
                failBlock:(void (^)(void))failure;
 
 /**
@@ -484,6 +485,7 @@ param failBlock:     接入会话失败回调，
  param failBlock:     失败回调
  */
 + (void)sdkConvertManualWithPeerId:(NSString *)peerId
+                       convertType:(NSString *)convertType
                       successBlock:(void (^)(void))success
                          failBlock:(void (^)(void))failure;
 
