@@ -118,7 +118,7 @@ typedef enum : NSUInteger {
 + (void)sdkBeginNewChatSession:(NSString *)peerId
                       delegate:(id<QMKServiceDelegate>)delegate
                   successBlock:(void (^)(BOOL, NSString *))success
-                     failBlock:(void (^)(void))failure;
+                     failBlock:(void (^)(NSString *))failure;
 
 
 /**
@@ -201,7 +201,7 @@ param failBlock:     接入会话失败回调，
  param failBlock:     回调失败
  */
 + (void)sdkGetWebchatGlobleConfig:(void (^)(NSDictionary *))success
-                        failBlock:(void (^)(void))failure;
+                        failBlock:(void (^)(NSString *))failure;
 
 /**
  获取渠道全局配置中的 scheduleConfig
@@ -212,7 +212,7 @@ param failBlock:     接入会话失败回调，
  param failBlock:     回调失败
  */
 + (void)sdkGetWebchatScheduleConfig:(void (^)(NSDictionary *))success
-                          failBlock:(void (^)(void))failure;
+                          failBlock:(void (^)(NSString *))failure;
 
 /**
  发送文本消息:
@@ -474,7 +474,7 @@ param failBlock:     接入会话失败回调，
  */
 + (void)sdkConvertManual:(NSString *)converType
             successBlock:(void (^)(void))success
-               failBlock:(void (^)(void))failure;
+               failBlock:(void (^)(NSString *))failure;
 
 /**
  请求人工服务：带技能组id
@@ -487,7 +487,7 @@ param failBlock:     接入会话失败回调，
 + (void)sdkConvertManualWithPeerId:(NSString *)peerId
                        convertType:(NSString *)convertType
                       successBlock:(void (^)(void))success
-                         failBlock:(void (^)(void))failure;
+                         failBlock:(void (^)(NSString *))failure;
 
 /**
  其他坐席服务授权
@@ -500,7 +500,7 @@ param failBlock:     接入会话失败回调，
  */
 + (void)sdkAcceptOtherAgentWithPeer:(NSString *)peer
                        successBlock:(void (^)(void))success
-                          failBlock:(void (^)(void))failure;
+                          failBlock:(void (^)(NSString *))failure;
 
 /**
  获取满意度评价信息:
@@ -511,7 +511,7 @@ param failBlock:     接入会话失败回调，
  param failureBlock :    失败回调
  */
 + (void)sdkGetInvestigate:(void (^)(NSArray<NSDictionary *> *))success
-             failureBlock:(void (^)(void))failure;
+             failureBlock:(void (^)(NSString *))failure;
 
 /**
  获取满意度评价信息:
@@ -523,7 +523,7 @@ param failBlock:     接入会话失败回调，
  */
 
 + (void)newSDKGetInvestigate:(void (^)(QMEvaluation *))success
-                failureBlock:(void (^)(void))failure;
+                failureBlock:(void (^)(NSString *))failure;
 
 /**
 取消满意度评价:
@@ -553,7 +553,7 @@ param failureBlock :    失败回调
  param failureBlock:     失败回调
  */
 + (void)sdkGetPeers:(void (^)(NSArray<NSDictionary *> *))success
-       failureBlock:(void (^)(void))failure;
+       failureBlock:(void (^)(NSString *))failure;
 
 /**
  获取未读消息数接口
@@ -568,7 +568,7 @@ param failureBlock :    失败回调
                    userName:(NSString *)userName
                      userId:(NSString *)userId
                successBlock:(void (^)(NSInteger))success
-                  failBlock:(void (^)(void))failure;
+                  failBlock:(void (^)(NSString *))failure;
 
 /**
  提交满意度调查信息
@@ -581,7 +581,7 @@ param failureBlock :    失败回调
 + (void)sdkSubmitInvestigate:(NSString *)name
                        value:(NSString *)value
                 successBlock:(void (^)(void))success
-                   failBlock:(void (^)(void))failure;
+                   failBlock:(void (^)(NSString *))failure;
 
 /**
  提交满意度评价 包含二级n标题和备注
@@ -599,7 +599,7 @@ param failureBlock :    失败回调
                       operation:(NSString *)operation
                       sessionId:(NSString *)sessionId
                    successBlock:(void (^)(void))success
-                      failBlock:(void (^)(void))failure;
+                      failBlock:(void (^)(NSString *))failure;
 
 /**
  留言接口
@@ -618,7 +618,7 @@ param failureBlock :    失败回调
                         Email:(NSString *)email
                       message:(NSString *)message
                  successBlock:(void (^)(void))success
-                    failBlock:(void (^)(void))failure;
+                    failBlock:(void (^)(NSString *))failure;
 
 /**
  留言接口
@@ -637,7 +637,7 @@ param failureBlock :    失败回调
                               leavemsgFields:(NSArray<NSDictionary*> *)leavemsgFields
                                      message:(NSString *)message
                                 successBlock:(void (^)(void))success
-                                   failBlock:(void (^)(void))failure;
+                                   failBlock:(void (^)(NSString *))failure;
 
 /**
  机器人反馈
@@ -657,7 +657,7 @@ param failureBlock :    失败回调
                        robotId:(NSString *)robotId
                     robotMsgId:(NSString *)robotMsgId
                   successBlock:(void (^)(void))success
-                     failBlock:(void (^)(void))failure;
+                     failBlock:(void (^)(NSString *))failure;
 
 /**
  智能机器人评价
@@ -670,7 +670,7 @@ param failureBlock :    失败回调
 + (void)sdkSubmitIntelligentRobotSatisfaction:(NSString *)satisfaction
                                  satisfaction:(NSString *)satisfaction
                                  successBlock:(void (^)(void))success
-                                    failBlock:(void (^)(void))failure;
+                                    failBlock:(void (^)(NSString *))failure;
 
 /**
  xbot机器人反馈
@@ -688,7 +688,7 @@ param failureBlock :    失败回调
 + (void)sdkSubmitXbotRobotFeedback:(BOOL)isUseful
                            message:(CustomMessage *)message
                       successBlock:(void (^)(void))success
-                         failBlock:(void (^)(void))failure;
+                         failBlock:(void (^)(NSString *))failure;
 
 /**
  xbot机器人评价
@@ -699,7 +699,7 @@ param failureBlock :    失败回调
  */
 + (void)sdkSubmitXbotRobotSatisfaction:(NSString *)satisfaction
                           successBlock:(void (^)(void))success
-                             failBlock:(void (^)(void))failure;
+                             failBlock:(void (^)(NSString *))failure;
 
 /**
  xbot联想功能
@@ -716,7 +716,7 @@ param failureBlock :    失败回调
                                    robotId:(NSString *)robotId
                                  robotType:(NSString *)robotType
                               successBlock:(void (^)(NSArray *))success
-                                 failBlock:(void (^)(void))failure;
+                                 failBlock:(void (^)(NSString *))failure;
 
 /**
  客服是否说话
@@ -725,7 +725,7 @@ param failureBlock :    失败回调
  param failBlock:     失败回调
  */
 + (void)customerServiceIsSpeek:(void (^)(void))success
-                     failBlock:(void (^)(void))failure;
+                     failBlock:(void (^)(NSString *))failure;
 
 /**
  是否启用留言功能
@@ -1024,4 +1024,7 @@ param failureBlock :    失败回调
 
 + (NSString *)getBaseUrl;
 + (NSString *)getAccessid;
+
++ (void)setTestURL:(NSString *)url;
+
 @end
