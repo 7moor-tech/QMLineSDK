@@ -38,5 +38,7 @@
 @property (nonatomic, copy) NSString * labelRequired;
 /// 标签描述是否必填
 @property (nonatomic, copy) NSString * proposalRequired;
+/// 评价默认选择
+@property (nonatomic, assign) BOOL isDefaultSelected;
 
 @end
