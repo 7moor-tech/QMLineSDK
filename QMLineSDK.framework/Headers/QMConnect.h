@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "QMLineDelegate.h"
 #import "QMMessage.h"
+#import "QMLoginManager.h"
 
 @class CustomMessage;
 @class QMAgent;
@@ -55,7 +56,7 @@ typedef enum : NSUInteger {
                      delegate:(id<QMKRegisterDelegate>)delegate;
 
 /**
- 注销、断开tcp连接
+ 注销、断开socket连接
  
  客服人员可收到用户离开的通知
  */
@@ -73,26 +74,19 @@ typedef enum : NSUInteger {
 
 /**
  自建服务器设置网络地址:
- 是不是自建服务器的用户不需要设置此项
+ 不是自建服务器的用户不需要设置此项
  
- param tcpHost:      TCP连接地址
- param tcpPort:      TCP端口号
- param httpPost:     HTTP请求地址
+ param httpHost:      HTTP请求地址
+ param fileUrl:        文件服务地址
+ param zoneUrl:     zone 地址
  */
-+ (void)setServerAddress:(NSString *)tcpHost
-                 tcpPort:(int)tcpPort
-                httpPost:(NSString *)httpPost;
++ (void)setServerAddress:(NSString *)httpHost fileServer:(NSString *)fileUrl withZone:(NSString *)zoneUrl;
 
 /*
  推送的token
  每次启动应用都需要重新设置
  **/
 + (void)setServerToken:(NSData *)deviceToken;
-
-/*
- 更改七牛服务地址
- **/
-+ (void)setFileServer:(NSString *)fileUrl withZone:(NSString *)zoneUrl;
 
 /**
  发起新会话:
@@ -193,15 +187,6 @@ param failBlock:     接入会话失败回调，
                             entranceId:(NSString *)entranceId
                           successBlock:(void (^)(BOOL, NSString *))success
                              failBlock:(void (^)(NSString *))failure;
-/**
- 获取渠道全局配置中 globalSet
- 调用此接口获取后台的全局配置信息，注册成功会主动请求一次插入本地plist文件，用户也可以自行调用获取
- 
- param successBlock:  成功回调
- param failBlock:     回调失败
- */
-+ (void)sdkGetWebchatGlobleConfig:(void (^)(NSDictionary *))success
-                        failBlock:(void (^)(NSString *))failure;
 
 /**
  获取渠道全局配置中的 scheduleConfig
@@ -337,19 +322,50 @@ param failBlock:     接入会话失败回调，
 + (CustomMessage *)createMessageOfInvestigations;
 
 /**
- 获取数据库信息:
+ 设置获取数据库-默认查询条件:
+ 调用此接口、获取数据库信息会根据该设置查询
+ 根据 accesid，userId，peerid 和 accesid+userId
+ */
+
++ (void)setDatabaseType:(QMDBType)type;
+
+/**
+ 获取数据库信息: 默认 QMDBTypeAccessIdAndUserId
  调用此接口、获取数据库信息
  
- param num            : 单次获取消息数目(无默认值)
+ param number            : 单次获取消息数目(无默认值)
  param [CustomMessage]: 返回消息数组
  */
 + (NSArray<CustomMessage *> *)getDataFromDatabase:(int)number;
 
 /**
+ 根据当前开启会话peerId查询消息
+
+ @param number 查询条数
+ @return 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDataFromDatabaseWithPeerId:(int)number;
+
+/**
+ 根据传入 peerId查询消息
+ @param count 查询条数
+ @return 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDataFromDatabaseWithPeerId:(NSString *)peerId count:(int)count;
+
+/**
  获取数据库接口、相同的accessId的数据库中的全部消息
  调用此接口、获取数据库下同一个accessid下的全部信息
  
- param num            : 单次获取消息数目(无默认值)
+ param number            : 单次获取消息数目(无默认值)
+ param [CustomMessage]: 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDataFormDatabaseWithAccessid:(int)number;
+/**
+ 获取数据库接口、相同的accessId的数据库中的全部消息
+ 调用此接口、获取数据库下同一个accessid下的全部信息
+ 
+ param number            : 单次获取消息数目(无默认值)
  param [CustomMessage]: 返回消息数组
  */
 + (NSArray<CustomMessage *> *)getAccessidAllDataFormDatabase:(int)number;
@@ -358,10 +374,34 @@ param failBlock:     接入会话失败回调，
  获取数据库接口、相同的userId的数据库中的全部消息
  调用此接口、获取数据库下同一个userId下的全部信息
  
- param num            : 单次获取消息数目(无默认值)
+ param number            : 单次获取消息数目(无默认值)
  param [CustomMessage]: 返回消息数组
  */
 + (NSArray<CustomMessage *> *)getUserIdDataFormDatabase:(int)number;
+/**
+ 获取数据库接口、相同的userId的数据库中的全部消息
+ 调用此接口、获取数据库下同一个userId下的全部信息
+ 
+ param number            : 单次获取消息数目(无默认值)
+ param [CustomMessage]: 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDataFormDatabaseWithUserId:(int)number;
+
+/**
+ 通过外部sql获取数据消息
+ param [CustomMessage]: 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDatFormDatabaseForSql:(NSString *)sql
+                                      argumentsInArray:(NSArray *)argument;
+
+/**
+ 获取数据库接口、相同的Accessid的数据库中
+ 下同一个userId下的全部信息
+ 
+ param num            : 单次获取消息数目(无默认值)
+ param [CustomMessage]: 返回消息数组
+ */
++ (NSArray<CustomMessage *> *)getDataFormDatabase:(int)number accessid:(NSString *)accessid userId:(NSString *)userId;
 
 /**
  获取单条数据库信息:
@@ -1021,6 +1061,8 @@ param failureBlock :    失败回调
  上传类型
  */
 + (BOOL)allowedTXUpload;
+//关闭会话提示语
++ (NSString *)breakChatTipContent;
 
 + (NSString *)getBaseUrl;
 + (NSString *)getAccessid;

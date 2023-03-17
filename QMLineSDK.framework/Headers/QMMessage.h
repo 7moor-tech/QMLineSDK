@@ -269,11 +269,6 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *voiceRead;
 
 /**
- 机器人回复是否有帮助 不是机器人@"none" 有帮助@"useful" 无帮助@"useless"
- */
-@property (nonatomic, copy)NSString *isUseful;
-
-/**
  机器人问题id
  */
 @property (nonatomic, copy)NSString *questionId;
@@ -413,6 +408,15 @@ typedef enum: NSInteger {
  */
 @property (nonatomic, copy)NSString *videoStatus;
 
+/**
+ 机器人回复是否有帮助 不是机器人@"none" 有帮助@"useful" 无帮助@"useless"
+ */
+@property (nonatomic, copy)NSString *isUseful;
+
+/**
+ 是否提交过点踩  没有@"none"  有@"submit"
+ */
+@property (nonatomic, copy) NSString *isSubmitReason;
 
 /*
  xbot机器人点赞文案
@@ -420,9 +424,20 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *fingerUp;
 
 /*
-xbot机器人点赞文案
+xbot机器人点踩文案
 **/
 @property (nonatomic, copy)NSString *fingerDown;
+
+/*
+xbot机器人点踩标签
+**/
+@property (nonatomic, copy)NSString *tagStr;
+
+/*
+xbot机器人点踩原因
+**/
+@property (nonatomic, copy)NSString *remark;
+@property (nonatomic, assign) BOOL isShowTag;
 
 /*
  满意度评价id
@@ -474,6 +489,12 @@ xbot机器人点赞文案
  文件二进制数据
  */
 @property (nonatomic, strong) NSData *fileData;
+
+/**
+ 技能组id
+ */
+@property (nonatomic, copy) NSString *peerId;
+
 
 /*
  video image 地址
