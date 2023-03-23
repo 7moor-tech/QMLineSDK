@@ -153,6 +153,10 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  */
 #define CUSTOMSRV_VIDEO_HangupVideo @"CUSTOMSRV_VIDEO_HangupVideo"
 /**
+ *  开启无响应定时器
+ */
+#define CUSTOMSRV_CHAT_CREATETIMER @"CUSTOMSRV_CHAT_CREATETIMER"
+/**
  *  断开会话
  */
 #define CUSTOMSRV_CHAT_BREAKTIMER @"CUSTOMSRV_CHAT_BREAKTIMER"

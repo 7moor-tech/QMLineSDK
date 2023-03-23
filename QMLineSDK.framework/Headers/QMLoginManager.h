@@ -51,6 +51,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL isShowEvaluateBtn;
 //视频是否显示
 @property (nonatomic, assign) BOOL isShowVideoBtn;
+//是否是排队状态
+@property (nonatomic, assign) BOOL isQueueStatus;
 
 /**
  单例
