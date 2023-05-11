@@ -249,6 +249,11 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *isRobot;
 
 /**
+ 消息是否展示推联  1 是  0 否"
+ */
+@property (nonatomic, copy) NSString *contactPushed;
+
+/**
  消息类型，系统消息-system、机器人消息-robot、人工消息-UUID、我自己发的消息-my
  */
 @property (nonatomic, copy)NSString *userType;
@@ -494,7 +499,6 @@ xbot机器人点踩原因
  技能组id
  */
 @property (nonatomic, copy) NSString *peerId;
-
 
 /*
  video image 地址

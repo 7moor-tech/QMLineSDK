@@ -93,33 +93,6 @@ typedef enum : NSUInteger {
  调用此接口、可以拥有与客服对话的能力
  
  param peer:          技能组ID，客服平台配置多个技能组时，需要传入对应的技能组ID，会话才能接入到对应的技能组，
- param successBlock:  接入会话成功回调，回调参数为bool类型，判断后台是否开启问卷调查功能
- param failBlock:     接入会话失败回调，
- */
-+ (void)sdkBeginNewChatSession:(NSString *)peerId
-                  successBlock:(void (^)(BOOL, NSString *))success
-                     failBlock:(void (^)(NSString *))failure;
-
-/**
- 发起新会话:
- 调用此接口、可以拥有与客服对话的能力
-
- @param peerId 技能组ID，客服平台配置多个技能组时，需要传入对应的技能组ID，会话才能接入到对应的技能组，
- @param delegate 设置代理方法
- @param success 接入会话成功回调，回调参数为bool类型，判断后台是否开启问卷调查功能
- @param failure 接入会话失败回调
- */
-+ (void)sdkBeginNewChatSession:(NSString *)peerId
-                      delegate:(id<QMKServiceDelegate>)delegate
-                  successBlock:(void (^)(BOOL, NSString *))success
-                     failBlock:(void (^)(NSString *))failure;
-
-
-/**
- 发起新会话:
- 调用此接口、可以拥有与客服对话的能力
- 
- param peer:          技能组ID，客服平台配置多个技能组时，需要传入对应的技能组ID，会话才能接入到对应的技能组，
  param params:        @{@"agent":@"8000"} 专属坐席
                       @{@"customField":@{@"姓名":@"李三"}} 自定义字段
  param successBlock:  接入会话成功回调，回调参数为bool类型，判断后台是否开启问卷调查功能
@@ -167,26 +140,6 @@ typedef enum : NSUInteger {
                           successBlock:(void (^)(BOOL, NSString *))success
                              failBlock:(void (^)(NSString *))failure;
 
-/**
-发起新会话:
-启用日程管理vip坐席失败之后用此接口
-
-调用此接口、可以拥有与客服对话的能力、携带参数
-
-param schedule:      日程id
-param processId:     流程id
-param currentNodeId: 入口节点中访客选择的流转节点ID
-param entranceId:    入口节点中的id
-param successBlock:  接入会话成功回调，回调参数为bool类型，判断后台是否开启问卷调查功能
-param failBlock:     接入会话失败回调，
-*/
-
-+ (void)sdkBeginNewChatSessionSchedule:(NSString *)scheduleId
-                             processId:(NSString *)processId
-                         currentNodeId:(NSString *)currentNodeId
-                            entranceId:(NSString *)entranceId
-                          successBlock:(void (^)(BOOL, NSString *))success
-                             failBlock:(void (^)(NSString *))failure;
 
 /**
  获取渠道全局配置中的 scheduleConfig
@@ -950,10 +903,6 @@ param failureBlock :    失败回调
  param ID:         满意度id 即会话id
  param status:   满意度状态  0--未评价  1--已评价  2--评价内容
  */
-//+ (void)sdkSendEvaluateMessage:(NSString *)text
-//                        withID:(NSString *)ID
-//                    withStatus:(NSString *)status
-//                 withTimestamp:(NSString *)timestamp;
 + (void)sdkSendEvaluateMessage:(NSDictionary *)dic;
 
 /**
@@ -1042,12 +991,24 @@ param failureBlock :    失败回调
 + (void)sdkHangupVideo:(NSString *)originator successBlock:(void (^)(void))success failBlock:(void (^)(void))failure;
 + (void)sdkGetVideo:(NSString *)type Completion:(void (^)(id))completion failure:(void (^)(NSError *))failure;
 
+/**坐席状态代理**/
++ (void)sdkStatusDelegate:(id<QMKServiceDelegate>)delegate;
+
 /**
  消息文件下载
  */
 + (void)downloadFileWithUrl:(NSString *)url
                    successBlock:(void (^)(void))success
                   failBlock:(void (^)(NSString *))failure;
+
+/**
+ 点击推联按钮
+ */
++ (void)clickPushContact:(NSString *)content contactStatus:(NSString *)status;
+/**
+ 切换机器人
+ */
++ (void)clickSwitchRobot:(NSString *)robotId transferToBot:(NSString *)toRobotId completion:(void (^)(NSArray *questionList))completion failure:(void (^)(NSString *))failure;
 
 /**
  排队保持时间

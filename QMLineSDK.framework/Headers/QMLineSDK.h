@@ -25,40 +25,11 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
 #import "QMSessionOption.h"
 #import "QMChatFileTextAttachment.h"
 #import "QMLoginManager.h"
-/**
- *  注册accessId成功通知
- */
-#define CUSTOM_LOGIN_SUCCEED @"customLoginSucceed"
-
-/**
- *  注册accessId失败通知
- */
-#define CUSTOM_LOGIN_ERROR_USER @"customLoginErrorUser"
 
 /**
  *  新消息通知
  */
 #define CHATMSG_RELOAD @"chatMsgReload"
-
-/**
- *  机器人客服通知
- */
-#define ROBOT_SERVICE @"robotService"
-
-/**
- *  客服在线
- */
-#define CUSTOMSRV_ONLINE @"CustomOnline"
-
-/**
- *  客服不在线
- */
-#define CUSTOMSRV_OFFLINE @"CustomOffline"
-
-/**
- *  在线领取消息
- */
-#define CUSTOMSRV_CLAIM @"customClaim"
 
 /**
  *  后台主动推送满意度调查
@@ -86,11 +57,6 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
 #define CUSTOMSRV_SOCKETFAIL @"socketDisconnect"
 
 /**
- *  专属坐席通知
- */
-#define CUSTOMSRV_VIP @"customvip"
-
-/**
  * 日程管理中的留言通知 (只适用于开启日程管理的坐席)
  */
 #define CUSTOMSRV_LEAVEMSG @"leavemsg"
@@ -99,6 +65,11 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  * 正在输入
  */
 #define CUSTOMSRV_IMPORTING @"importing"
+
+/**
+ *  已读刷新
+ */
+#define CUSTOM_MESSAGERELOAD_STATUS @"customMessageAlreadReload"
 
 /**
  * 撤回消息

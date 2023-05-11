@@ -18,8 +18,8 @@ typedef enum : NSUInteger {
 @interface QMLoginManager : NSObject
 //是否是日程管理
 @property (nonatomic, assign) BOOL isSchedule;
-//是否是坐席
-@property (nonatomic, assign) BOOL isKFClaim;
+//坐席状态
+@property (nonatomic, assign) NSInteger KFStatus;
 //是否发送失败
 @property (nonatomic, assign) BOOL isNetworkError;
 @property (nonatomic, assign) BOOL isManual;
@@ -51,8 +51,21 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL isShowEvaluateBtn;
 //视频是否显示
 @property (nonatomic, assign) BOOL isShowVideoBtn;
-//是否是排队状态
-@property (nonatomic, assign) BOOL isQueueStatus;
+//推联配置
+@property (nonatomic, strong) NSDictionary *pushContactInfo;
+//1启用按钮 0禁用推联按钮
+@property (nonatomic, assign) NSInteger enable_copy;
+@property (nonatomic, assign) NSInteger enable_scan;
+//会话 id
+@property (nonatomic, copy) NSString *chatId;
+//是否开启切换机器人
+@property (nonatomic, assign) BOOL isOpenSwitchRobot;
+//切换机器人提示
+@property (nonatomic, copy) NSString *switchRobotTip;
+//机器人列表
+@property (nonatomic, strong) NSArray *robotList;
+//机器人id
+@property (nonatomic, copy) NSString *robotId;
 
 /**
  单例

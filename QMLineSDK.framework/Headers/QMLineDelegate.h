@@ -20,12 +20,11 @@
 
 @protocol QMKServiceDelegate <NSObject>
 
-- (void)currentAgentStatus:(QMKStatus)status;
+- (void)currentAgentStatus:(QMKFStatus)status;
 
 @optional
 - (void)currentAgentInfo:(QMAgent *)agent;
 
-@optional
 - (void)currentSessionWaitNumber:(int)number;
 
 @end
