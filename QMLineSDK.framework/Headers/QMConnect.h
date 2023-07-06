@@ -584,7 +584,8 @@ param failureBlock :    失败回调
  param successBlock:  成功回调
  param failBlock:     失败回调
  */
-+ (void)sdkNewSubmitInvestigate:(NSString *)name
++ (void)sdkNewSubmitInvestigate:(NSString *)evalatType
+                           name:(NSString *)name
                           value:(NSString *)value
                      radioValue:(NSArray *)radioValue
                          remark:(NSString *)remark

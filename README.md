@@ -6,4 +6,4 @@ QMLineSDK是容联·七陌 cc平台iOS一款在线客服SDK
 
 cocoapods 管理
 
-pod 'QMLineSDK', '~> 4.7.1'
+pod 'QMLineSDK', '~> 4.8.0'

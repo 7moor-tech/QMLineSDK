@@ -18,6 +18,12 @@
 @property (nonatomic, copy) NSArray<QMEvaluats *> * evaluats;
 
 @property (nonatomic, copy) NSString * timeout;
+//星级初始值
+@property (nonatomic, assign) NSInteger starInitValue;
+//展示类型  text 文本  star  星级
+@property (nonatomic, copy) NSString *csrDetailType;
+//满意度评价文案
+@property (nonatomic, copy) NSString *satisfyComment;
 ///满意度评价超时是否开启
 @property (nonatomic, assign) BOOL CSRAging;
 ///访客是否开启满意度权限
