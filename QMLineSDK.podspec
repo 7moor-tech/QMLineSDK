@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "QMLineSDK"
-  spec.version      = "4.8.0"
+  spec.version      = "4.8.1"
   spec.summary      = "QMLineSDK is sdk"
 
   spec.homepage     = "https://github.com/7moor-tech/QMLineSDK"
@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
 
   spec.author       = { "RockALins" => "rockcodealin@163.com" }
 
-  spec.platform     = :ios,'9.0'
+  spec.platform     = :ios,'11.0'
 
   spec.source       = { :git => "https://github.com/7moor-tech/QMLineSDK.git", :tag => spec.version.to_s }
 

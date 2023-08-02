@@ -27,10 +27,37 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
 #import "QMLoginManager.h"
 
 /**
+ *  注册accessId成功通知
+ */
+#define CUSTOM_LOGIN_SUCCEED @"customLoginSucceed"
+
+/**
+ *  注册accessId失败通知
+ */
+#define CUSTOM_LOGIN_ERROR_USER @"customLoginErrorUser"
+/**
  *  新消息通知
  */
 #define CHATMSG_RELOAD @"chatMsgReload"
+/**
+ *  机器人客服通知
+ */
+#define ROBOT_SERVICE @"robotService"
 
+/**
+ *  客服在线
+ */
+#define CUSTOMSRV_ONLINE @"CustomOnline"
+
+/**
+ *  客服不在线
+ */
+#define CUSTOMSRV_OFFLINE @"CustomOffline"
+
+/**
+ *  在线领取消息
+ */
+#define CUSTOMSRV_CLAIM @"customClaim"
 /**
  *  后台主动推送满意度调查
  */
@@ -45,6 +72,11 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  *  结束会话通知
  */
 #define CUSTOMSRV_FINISH @"customsrvfinish"
+
+/**
+ *  专属坐席通知
+ */
+#define CUSTOMSRV_VIP @"customvip"
 
 /**
  *  坐席信息通知
