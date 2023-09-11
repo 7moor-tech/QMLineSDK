@@ -62,6 +62,18 @@ typedef enum: NSInteger {
     QMDownloadStateDownloading = 2,
 }QMDownloadState;
 
+@interface QMQuoteContent : NSObject
+
+@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *contentType;
+@property (nonatomic, copy) NSString *_id;
+
++ (instancetype)initWithJson:(NSDictionary *)data;
+- (NSString *)toJSON;
+
+@end
+
+
 #pragma mark -- 富文本消息 --
 @interface CustomRichText: NSObject
 
@@ -247,6 +259,11 @@ typedef enum: NSInteger {
  消息是否来源于机器人  机器人@"1" 非机器人@"2"
  */
 @property (nonatomic, copy)NSString *isRobot;
+
+/**
+ 消息是否是富文本
+ */
+@property (nonatomic, assign)BOOL showHtml;
 
 /**
  消息是否展示推联  1 是  0 否"
@@ -507,6 +524,14 @@ xbot机器人点踩原因
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *type;
 
+@property (nonatomic, assign) BOOL isQuoteMsg;
+@property (nonatomic, strong) QMQuoteContent *quoteContent;
+@property (nonatomic, copy) NSString *sendContent;
+
+
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key;
 
 @end
+
+

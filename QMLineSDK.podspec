@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "QMLineSDK"
-  spec.version      = "4.8.1"
+  spec.version      = "4.9.0"
   spec.summary      = "QMLineSDK is sdk"
 
   spec.homepage     = "https://github.com/7moor-tech/QMLineSDK"
