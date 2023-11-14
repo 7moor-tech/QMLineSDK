@@ -1012,6 +1012,11 @@ param failureBlock :    失败回调
 + (void)clickSwitchRobot:(NSString *)robotId transferToBot:(NSString *)toRobotId completion:(void (^)(NSArray *questionList))completion failure:(void (^)(NSString *))failure;
 
 /**
+ 获取 xbot 满意度评价
+ */
++ (void)SDKGetXbotInvestigate:(NSString *)xbotId success:(void (^)(QMEvaluation *))success failureBlock:(void (^)(NSString *))failure;
+
+/**
  排队保持时间
  */
 + (NSString *)queueKeepTime;

@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = "QMLineSDK"
-  spec.version      = "4.9.0"
+  spec.version      = "4.9.2"
   spec.summary      = "QMLineSDK is sdk"
 
   spec.homepage     = "https://github.com/7moor-tech/QMLineSDK"
@@ -23,6 +23,6 @@ Pod::Spec.new do |spec|
 
   spec.requires_arc = true
   spec.dependency 'QMBaseLib', '~> 0.6'
-  spec.dependency 'SocketRocket', '~> 0.6.0'
+  spec.dependency 'SocketRocket', '~> 0.6.1'
 
 end
