@@ -373,6 +373,15 @@ typedef enum : NSUInteger {
  */
 + (void)removeDataFromDataBase:(NSString *)messageId;
 
+
+/**
+ 查询数据库信息:
+ 指定contenttype类型
+ 
+ param message:  消息
+ */
++ (NSArray<CustomMessage *> *)queryMessageWithContentType:(NSString *)type;
+
 /**
  修改语音状态接口:
  将语音由未读取状态变为已读取状态
