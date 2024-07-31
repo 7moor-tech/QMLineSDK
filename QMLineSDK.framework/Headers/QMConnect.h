@@ -779,6 +779,11 @@ param failureBlock :    失败回调
 + (void)createNoresponseTimer;
 
 /**
+ 会话断开前提示语
+ */
++ (void)showBreakTips;
+
+/**
  移除访客无响应定时器
  
  用户长时间未给坐席发送消息，自动移除当前定时器

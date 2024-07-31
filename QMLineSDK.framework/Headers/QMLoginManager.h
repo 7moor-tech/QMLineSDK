@@ -67,6 +67,12 @@ typedef enum : NSUInteger {
 //机器人id
 @property (nonatomic, copy) NSString *robotId;
 
+//是否开启客户级别白名单
+@property (nonatomic, assign) BOOL isUploadWhite;
+//白名单类型
+@property (nonatomic, copy) NSString *uploadWhiteList;
+//全局黑名单类型
+@property (nonatomic, copy) NSString *globalUploadBlackList;
 /**
  单例
 

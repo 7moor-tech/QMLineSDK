@@ -163,3 +163,7 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
  *  断开会话
  */
 #define CUSTOMSRV_CHAT_BREAKTIMER @"CUSTOMSRV_CHAT_BREAKTIMER"
+/**
+ *  会话断开前提示语
+ */
+#define CUSTOMSRV_CHAT_BREAKTIPS @"CUSTOMSRV_CHAT_BREAKTIPS"
