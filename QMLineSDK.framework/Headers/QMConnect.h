@@ -747,6 +747,9 @@ param failureBlock :    失败回调
  */
 + (NSString *)leaveMessageAlert;
 
+//新增留言字段
++ (NSString *)clientLeavemsgTitle;
+
 /**
  留言标题
  
