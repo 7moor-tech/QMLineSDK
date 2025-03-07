@@ -73,6 +73,26 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *uploadWhiteList;
 //全局黑名单类型
 @property (nonatomic, copy) NSString *globalUploadBlackList;
+//机器人图片按钮是否显示
+@property (nonatomic, assign) BOOL isShowPictureByRobotBtn;
+//机器人拍照按钮是否显示
+@property (nonatomic, assign) BOOL isShowCameraByRobotBtn;
+//机器人文件按钮是否显示
+@property (nonatomic, assign) BOOL isShowFileByRobotBtn;
+//机器人常见问题按钮是否显示
+@property (nonatomic, assign) BOOL isShowQuestionByRobotBtn;
+
+//是否开启评价回合制
+@property (nonatomic, assign) BOOL isEvaluateRound;
+//评价回合制数
+@property (nonatomic, assign) long evaluateRound;
+//当前回合数
+@property (nonatomic, assign)long currentEvaluateRound;
+
+//是否是人工
+@property (nonatomic, assign) BOOL isRobot;
+//是否评价过
+@property (nonatomic, assign) BOOL isEvaluate;
 /**
  单例
 

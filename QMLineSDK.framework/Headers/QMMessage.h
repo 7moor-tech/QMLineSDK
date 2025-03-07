@@ -133,6 +133,11 @@ typedef enum: NSInteger {
 @interface CustomMessage : NSObject
 
 /**
+ 消息回合数
+ */
+@property (nonatomic, assign) long agentRoundCount;
+
+/**
  消息id
  */
 @property (nonatomic, copy)NSString *_id;

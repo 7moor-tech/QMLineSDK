@@ -30,6 +30,10 @@
 @property (nonatomic, assign) BOOL CSRCustomerPush;
 ///访客离开是否弹出满意度评价权限
 @property (nonatomic, assign) BOOL CSRCustomerLeavePush;
+//人工评价回合数开关
+@property (nonatomic, assign)BOOL AppraiseTurnLimit;
+//人工评价回合数设置
+@property (nonatomic, assign)long AppraiseTurnLimitNum;
 
 @end
 
