@@ -93,6 +93,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL isRobot;
 //是否评价过
 @property (nonatomic, assign) BOOL isEvaluate;
+
+//是否开启访客主动结束会话
+@property (nonatomic, copy) NSString *visitorFinishSessionCharge;
 /**
  单例
 

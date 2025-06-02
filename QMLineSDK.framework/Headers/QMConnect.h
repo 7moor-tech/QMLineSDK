@@ -1034,6 +1034,11 @@ param failureBlock :    失败回调
 + (void)SDKGetXbotInvestigate:(NSString *)xbotId success:(void (^)(QMEvaluation *))success failureBlock:(void (^)(NSString *))failure;
 
 /**
+ 访客主动关闭会话接口
+ */
++ (void)sdkfinishSessionByVisitorSuccessBlock:(void (^)(void))success failBlock:(void (^)(void))failure;
+
+/**
  排队保持时间
  */
 + (NSString *)queueKeepTime;

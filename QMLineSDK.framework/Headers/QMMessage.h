@@ -132,6 +132,11 @@ typedef enum: NSInteger {
 #pragma mark -- 消息 --
 @interface CustomMessage : NSObject
 
+//大模型应答提示开关
+@property (nonatomic, assign) BOOL agentTipsSwitch;
+//大模型应答提示内容
+@property (nonatomic, copy)NSString *agentTipsContent;
+
 /**
  消息回合数
  */
