@@ -24,6 +24,7 @@ FOUNDATION_EXPORT const unsigned char QMLineSDKVersionString[];
 #import "QMLineDelegate.h"
 #import "QMSessionOption.h"
 #import "QMChatFileTextAttachment.h"
+#import "QMTableTextAttachment.h"
 #import "QMLoginManager.h"
 
 /**
