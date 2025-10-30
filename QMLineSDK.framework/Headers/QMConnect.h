@@ -257,6 +257,20 @@ typedef enum : NSUInteger {
                       failBlock:(void (^)(NSString *))failure;
 
 /**
+ 下载附件页面的文件：
+ 
+ param message:         消息实例
+ param localFilePath:   沙盒文件相对路径
+ param progress:        下载进度回调
+ param successBlock:    成功回调
+ param failBlock:       失败回调
+ */
++ (void)downloadLeaveFileWithMessage:(CustomMessage *)message
+                       localFilePath:(NSString *)filePath
+                      progressHander:(void (^)(NSProgress *))progress successBlock:(void (^)(void))success
+                           failBlock:(void (^)(NSString *))failure;
+
+/**
  消息重发:
  调用此接口、将未发送的消息重新发送
 
@@ -468,6 +482,11 @@ typedef enum : NSUInteger {
 + (void)insertLeaveMsg:(NSString *)message;
 
 /**
+ 插入带附件留言内容，用于会话页面展示
+ */
++ (void)insertLeaveMsg:(NSString *)message leavemsgAnnexList:(NSArray *)leavemsgAnnexList;
+
+/**
  请求人工服务:
  调用此接口、请求人工服务(如后台开启智能机器人功能、默认为机器人服务器)
  
@@ -643,6 +662,25 @@ param failureBlock :    失败回调
                                    failBlock:(void (^)(NSString *))failure;
 
 /**
+ 留言接口
+ 
+ 客服离线状态下，未配置机器人客服或转人工客服时，可进行留言操作
+ 
+ param peer:          技能组
+ param information:   联系信息
+ param leavesgFields: 自定义联系字段
+ param leavemsgAnnexList: 留言附加地址
+ param message:       留言内容
+ param successBlock:  成功回调
+ param failBlock:     失败回调
+ */
++ (void)sdkSubmitLeaveMessageWithInformation:(NSString *)peer
+                                 information:(NSDictionary *)information
+                              leavemsgFields:(NSArray<NSDictionary*> *)leavemsgFields
+                           leavemsgAnnexList:(NSArray<NSDictionary*> *)leavemsgAnnexList
+                                     message:(NSString *)message successBlock:(void (^)(void))success failBlock:(void (^)(NSString *))failure;
+
+/**
  机器人反馈
  
  param isUseful:      是否有帮助
@@ -773,6 +811,14 @@ param failureBlock :    失败回调
  后台留言板联系方式自定义字段
  */
 + (NSArray *)leaveMessageContactInformation;
+
+/**
+ 是否增加附件上传
+ 
+ 全局配置：
+ 启用附件上传功能，坐席在留言面板进行附件上传
+ */
++ (BOOL)leavemsgAnnexAble;
 
 /**
  创建访客无响应定时器
@@ -956,6 +1002,15 @@ param failureBlock :    失败回调
  failBlock 上传失败
  **/
 + (void)sdkSendFile:(NSDictionary *)fileDic progress:(void (^)(float))progress success:(void (^)(NSString *))success failBlock:(void (^)(NSString *))failure;
+
+/*
+ 用于留言消息上传附件
+ fileDic   附件消息体 必须包含fileName、fileSize、filePath
+ progress  上传进度
+ success   上传成功返回链接数组
+ failBlock 上传失败
+ **/
++ (void)sdkSendLeavemsgAnnexFile:(NSDictionary *)fileDic progress:(void (^)(float))progress success:(void (^)(NSArray *))success failBlock:(void (^)(NSString *))failure;
 
 /*
  提交表单消息

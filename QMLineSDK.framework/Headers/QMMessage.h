@@ -534,6 +534,11 @@ xbot机器人点踩原因
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *type;
 
+/*
+ 留言
+ **/
+@property (nonatomic, copy) NSString *fileContent;
+
 @property (nonatomic, assign) BOOL isQuoteMsg;
 @property (nonatomic, strong) QMQuoteContent *quoteContent;
 @property (nonatomic, copy) NSString *sendContent;
