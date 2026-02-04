@@ -1071,6 +1071,7 @@ param failureBlock :    失败回调
  消息文件下载
  */
 + (void)downloadFileWithUrl:(NSString *)url
+                       path:(NSString *)path
                    successBlock:(void (^)(void))success
                   failBlock:(void (^)(NSString *))failure;
 

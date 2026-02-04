@@ -414,6 +414,7 @@ typedef enum: NSInteger {
 @property (nonatomic, copy)NSString *cardSubhead;
 @property (nonatomic, copy)NSString *cardPrice;
 @property (nonatomic, copy)NSString *cardUrl;
+@property (nonatomic, copy)NSString *cardStyle;
 
 /**
  新卡片消息
