@@ -48,7 +48,12 @@
 @property (nonatomic, copy) NSString * labelRequired;
 /// 标签描述是否必填
 @property (nonatomic, copy) NSString * proposalRequired;
-/// 评价默认选择
-@property (nonatomic, assign) BOOL isDefaultSelected;
+/// 备注和标签是否至少填写一个（xbot专用，0/1/不存在三态）
+@property (nonatomic, copy) NSString * commentRequired;
 
+/// xbot机器人评价默认选中
+@property (nonatomic, assign) BOOL defaultSelected;
+
+/// 评价默认选择（人工评价）
+@property (nonatomic, assign) BOOL isDefaultSelected;
 @end
